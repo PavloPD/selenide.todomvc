@@ -25,10 +25,7 @@ public class TodoMvcTask {
 
         elements(byXpath("//*[@id='todo-list']/li[contains(concat(' ',normalize-space(@class),' '),' completed ')]")).shouldHave(exactTexts("b"));
 
-        element(byXpath("//*[@id='todo-list']/li[2]")).shouldNotHave(cssClass(".completed"));
-        element(byXpath("//*[@id='todo-list']/li[2]")).shouldNotHave(cssClass(".completed"));
-
-
+        elements(byXpath("//*[@id='todo-list']/li[not(self::node()[contains(concat(' ',normalize-space(@class),' '),' completed ')])]")).shouldHave(exactTexts("a", "c"));
 
     }
 
