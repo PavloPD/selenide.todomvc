@@ -1,12 +1,9 @@
-package TodoMvcTestXpath;
-import com.codeborne.selenide.Condition;
+package todomvctestxpath;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Selectors.*;
-import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.CollectionCondition.*;
-import static org.openqa.selenium.support.ui.ExpectedConditions.titleIs;
 
 public class TodoMvcTask {
 
@@ -18,16 +15,16 @@ public class TodoMvcTask {
         element(byXpath("//*[@id='new-todo']")).setValue("a").pressEnter();
         element(byXpath("//*[@id='new-todo']")).setValue("b").pressEnter();
         element(byXpath("//*[@id='new-todo']")).setValue("c").pressEnter();
-
         elements(byXpath("//*[@id='todo-list']/li")).shouldHave(exactTexts("a","b","c"));
 
-        element(byXpath("//*[@id='todo-list']/li[2]//*[contains(concat(' ',normalize-space(@class),' '),' toggle ')]")).click();
-
-        elements(byXpath("//*[@id='todo-list']/li[contains(concat(' ',normalize-space(@class),' '),' completed ')]")).shouldHave(exactTexts("b"));
-
-        elements(byXpath("//*[@id='todo-list']/li[not(self::node()[contains(concat(' ',normalize-space(@class),' '),' completed ')])]")).shouldHave(exactTexts("a", "c"));
-
+        element(byXpath("//*[@id='todo-list']/li[.//text()='b']" +
+                "//*[contains(concat(' ',normalize-space(@class),' '),' toggle ')]"))
+                .click();
+        elements(byXpath("//*[@id='todo-list']/li" +
+                "[contains(concat(' ',normalize-space(@class),' '),' completed ')]"))
+                .shouldHave(exactTexts("b"));
+        elements(byXpath("//*[@id='todo-list']/li" +
+                "[not(contains(concat(' ',normalize-space(@class),' '),' completed '))]"))
+                .shouldHave(exactTexts("a", "c"));
     }
-
-
 }
