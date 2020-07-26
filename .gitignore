@@ -1,3 +1,4 @@
 .gradle
 .idea
 build/
+build/classes/java/test/TodoMvcTest/TodoMvcTask1.class
