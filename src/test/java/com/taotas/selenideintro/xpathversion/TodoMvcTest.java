@@ -1,15 +1,14 @@
-package todomvctestxpath;
+package com.taotas.selenideintro.xpathversion;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.CollectionCondition.*;
 
-public class TodoMvcTask {
+public class TodoMvcTest {
 
     @Test
     void completedTask(){
-
         open("http://todomvc.com/examples/emberjs/");
 
         element(byXpath("//*[@id='new-todo']")).setValue("a").pressEnter();

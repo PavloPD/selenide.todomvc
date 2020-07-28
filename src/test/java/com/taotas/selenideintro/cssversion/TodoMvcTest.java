@@ -1,10 +1,10 @@
-package todomvctestcss;
+package com.taotas.selenideintro.cssversion;
 
 import org.junit.jupiter.api.Test;
 import static com.codeborne.selenide.CollectionCondition.exactTexts;
 import static com.codeborne.selenide.Selenide.*;
 
-public class TodoMvcTask {
+public class TodoMvcTest {
 
     @Test
     void completedTask(){
