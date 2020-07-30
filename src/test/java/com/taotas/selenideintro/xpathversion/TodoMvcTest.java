@@ -14,7 +14,7 @@ public class TodoMvcTest {
         element(byXpath("//*[@id='new-todo']")).setValue("a").pressEnter();
         element(byXpath("//*[@id='new-todo']")).setValue("b").pressEnter();
         element(byXpath("//*[@id='new-todo']")).setValue("c").pressEnter();
-        elements(byXpath("//*[@id='todo-list']/li")).shouldHave(exactTexts("a","b","c"));
+        elements(byXpath("//*[@id='todo-list']/li")).shouldHave(exactTexts("a", "b", "c"));
 
         element(byXpath("//*[@id='todo-list']/li[.//text()='b']" +
                 "//*[contains(concat(' ',normalize-space(@class),' '),' toggle ')]"))
