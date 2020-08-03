@@ -16,14 +16,11 @@ public class TodoMvcTest {
         element(byXpath("//*[@id='new-todo']")).setValue("c").pressEnter();
         elements(byXpath("//*[@id='todo-list']/li")).shouldHave(exactTexts("a", "b", "c"));
 
-        element(byXpath("//*[@id='todo-list']/li[.//text()='b']" +
-                "//*[contains(concat(' ',normalize-space(@class),' '),' toggle ')]"))
-                .click();
-        elements(byXpath("//*[@id='todo-list']/li" +
-                "[contains(concat(' ',normalize-space(@class),' '),' completed ')]"))
-                .shouldHave(exactTexts("b"));
-        elements(byXpath("//*[@id='todo-list']/li" +
-                "[not(contains(concat(' ',normalize-space(@class),' '),' completed '))]"))
-                .shouldHave(exactTexts("a", "c"));
+        element(byXpath("//*[@id='todo-list']/li[.//text()='b']//*["+ classHelper("toggle") +"]")).click();
+        elements(byXpath("//*[@id='todo-list']/li["+ classHelper("completed") +"]")).shouldHave(exactTexts("b"));
+        elements(byXpath("//*[@id='todo-list']/li[not("+ classHelper("completed") +")]")).shouldHave(exactTexts("a", "c"));
+    }
+    public static String classHelper(String line){
+        return "contains(concat(' ',normalize-space(@class),' '),' "+ line +" ')";
     }
 }
